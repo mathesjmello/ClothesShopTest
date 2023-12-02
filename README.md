@@ -2,19 +2,21 @@
 
 Core
 
-[] create git and unity project
-[] inport assets 
+[x] create git and unity project
+[] import assets 
 [] block basic scene
-[] key mapping
+[x] Input Sys
+[] Player Controller
 [] animation sys
+[] UI controller
 [] change clothes sys
 [] money sys
 [] buy and sell sys
-[] collectable itens
+[] collectable items
 
 Extra
 
 [] msg sys
 [] sound
 [] post processing
-[] ligths
+[] lights
