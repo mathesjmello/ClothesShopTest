@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,10 +27,17 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
+        
         _inputs.GamePlay.Move.performed += MoveOnPerformed;
         _inputs.GamePlay.Interact.started += InteractOnStarted;
         _inputs.GamePlay.Cancel.started += CancelOnStarted;
+        _inputs.GamePlay.Move.canceled += MoveOnPerformed;
         
+    }
+
+    private void MoveOnCanceled(InputAction.CallbackContext obj)
+    {
+        throw new System.NotImplementedException();
     }
 
     private void CancelOnStarted(InputAction.CallbackContext obj)
@@ -48,6 +52,7 @@ public class InputManager : MonoBehaviour
     {
         if (gameState == GameState.GamePlay)
         {
+            Debug.Log("try interact");
             //check if has an Iinteractable infront and send info to Iinteractable object
         }
 
@@ -63,6 +68,7 @@ public class InputManager : MonoBehaviour
         if (gameState == GameState.GamePlay)
         {
             //send info to player controller
+            Bootstrap.Instance.pc.SetDirection(dir);
         }
         else
         {

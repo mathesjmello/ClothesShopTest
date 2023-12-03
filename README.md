@@ -3,11 +3,11 @@
 Core
 
 [x] create git and unity project
-[] import assets 
-[] block basic scene
+[x] import assets 
+[x] block basic scene
 [x] Input Sys
-[] Player Controller
-[] animation sys
+[x] Player Controller
+[x] animation sys
 [] UI controller
 [] change clothes sys
 [] money sys
