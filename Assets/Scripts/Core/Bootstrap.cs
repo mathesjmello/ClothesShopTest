@@ -1,4 +1,5 @@
 ﻿using Player;
+using UI;
 using UnityEngine;
 
 public class Bootstrap : MonoBehaviour
@@ -24,15 +25,19 @@ public class Bootstrap : MonoBehaviour
 
     private static Bootstrap _instance;
 
-    public PlayerController pc;
-    public InputManager im;
+    public PlayerController pC;
+    public HUDController hudC;
+    public OutfitController outfitC;
+    public InputManager inputM;
     
     private void Awake()
     {
         if (_instance == null)
             _instance = this;
 
-        pc = FindObjectOfType<PlayerController>();
-        im = FindObjectOfType<InputManager>();
+        pC = FindObjectOfType<PlayerController>();
+        hudC = FindObjectOfType<HUDController>();
+        outfitC = FindObjectOfType<OutfitController>();
+        inputM = FindObjectOfType<InputManager>();
     }
 }

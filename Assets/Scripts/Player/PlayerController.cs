@@ -13,8 +13,7 @@ namespace Player
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-            var animators = GetComponentsInChildren<Animator>();
-            _animators = animators.ToList();
+            _animators = GetComponentsInChildren<Animator>().ToList();
         }
 
         public void SetDirection(Vector2 dir)

@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
     private Inputs _inputs;
-    [SerializeField] private GameState gameState = GameState.GamePlay; 
-    private enum GameState
+    public GameState gameState = GameState.GamePlay;
+
+    public enum GameState
     {
         GamePlay,
         UI
@@ -28,51 +30,55 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         
-        _inputs.GamePlay.Move.performed += MoveOnPerformed;
-        _inputs.GamePlay.Interact.started += InteractOnStarted;
-        _inputs.GamePlay.Cancel.started += CancelOnStarted;
-        _inputs.GamePlay.Move.canceled += MoveOnPerformed;
-        
+        _inputs.GamePlay.Move.performed += Move;
+        _inputs.GamePlay.Interact.started += Interact;
+        _inputs.GamePlay.Cancel.started += Cancel;
+        _inputs.GamePlay.Move.canceled += Move;
     }
 
-    private void MoveOnCanceled(InputAction.CallbackContext obj)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    private void CancelOnStarted(InputAction.CallbackContext obj)
+    private void Cancel(InputAction.CallbackContext obj)
     {
         if (gameState == GameState.UI)
         {
-            //send info to UI controller
+            Bootstrap.Instance.hudC.CloseHud();
         }
     }
 
-    private void InteractOnStarted(InputAction.CallbackContext obj)
+    private void Interact(InputAction.CallbackContext obj)
     {
         if (gameState == GameState.GamePlay)
         {
-            Debug.Log("try interact");
-            //check if has an Iinteractable infront and send info to Iinteractable object
+            Bootstrap.Instance.hudC.OpenHud();
         }
-
-        if (gameState == GameState.UI)
+        else
         {
-            //send info to  UI controller
+            Bootstrap.Instance.hudC.ClickBtn();
         }
+        
     }
 
-    private void MoveOnPerformed(InputAction.CallbackContext obj)
+    private void Move(InputAction.CallbackContext obj)
     {
         var dir = obj.ReadValue<Vector2>();
         if (gameState == GameState.GamePlay)
         {
             //send info to player controller
-            Bootstrap.Instance.pc.SetDirection(dir);
+            Bootstrap.Instance.pC.SetDirection(dir);
         }
         else
         {
             //send info to UI controller
+        }
+    }
+
+    public void SwitchActionMap()
+    {
+        if (gameState == GameState.GamePlay)
+        {
+            gameState = GameState.UI;
+        }else
+        {
+            gameState = GameState.GamePlay;
         }
     }
 }
