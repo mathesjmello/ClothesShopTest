@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using Player;
 using TMPro;
 using UnityEngine;
@@ -12,6 +12,8 @@ namespace UI
         public Button outfit1Buy, outfit2Buy, egg , meat;
         public Button outfit1, outfit2;
         public TextMeshProUGUI moneyText;
+        public TextMeshProUGUI meatText;
+        public TextMeshProUGUI eggsText;
         private int _playerMoney;
         private int _playerEggs;
         private int _playerMeat;
@@ -34,10 +36,12 @@ namespace UI
             
         }
 
-        private void CheckPlayerItems()
+        public void CheckPlayerItems()
         {
             _playerEggs = _player.eggs;
             _playerMeat = _player.meat;
+            meatText.text = "Count:   "+_playerMeat.ToString();
+            eggsText.text = "Count:   "+_playerEggs.ToString();
             meat.interactable = _playerMeat >= 1;
             egg.interactable = _playerEggs >= 1;
         }

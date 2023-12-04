@@ -1,6 +1,4 @@
-﻿using System;
-using Player;
-using UnityEditor.Tilemaps;
+﻿using Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -19,11 +17,13 @@ namespace UI
         public CanvasGroup _previousCG;
         public BtnSelector _selector;
         public BtnSelector _previousSelector;
+        private BuySellSys _buySell;
 
         private void Start()
         {
             _player = Bootstrap.Instance.pC;
             _input = Bootstrap.Instance.inputM;
+            _buySell = Bootstrap.Instance.buySellSys;
         }
 
         public void OnTriggerCheck(CanvasGroup hud, BtnSelector btnSelector, int collect)
@@ -52,13 +52,11 @@ namespace UI
                     break;
                 case 1:
                     _player.eggs++;
-                    Debug.Log("egg added");
-                    //add egg
+                    _buySell.CheckPlayerItems();
                 return;
                 case 2:
                     _player.meat++;
-                    Debug.Log("meat added");
-                    //add meat
+                    _buySell.CheckPlayerItems();
                 return;
             }
             if (canOpenHud)
@@ -101,10 +99,15 @@ namespace UI
 
         public void ClickBtn()
         {
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable)
+            if (EventSystem.current.currentSelectedGameObject!=null)
             {
-                EventSystem.current.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
+                if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable)
+                {
+                    EventSystem.current.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
+                }
             }
+            
+            
         }
     }
 }

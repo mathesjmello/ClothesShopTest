@@ -1,14 +1,13 @@
-using System;
+
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 namespace UI
 {
     public class OutfitController : MonoBehaviour
     {
-        public List<AnimatorController> outfits = new List<AnimatorController>();
-        public AnimatorController selectedOutfit;
+        public List<RuntimeAnimatorController> outfits = new List<RuntimeAnimatorController>();
+        public RuntimeAnimatorController selectedOutfit;
         public Animator outfitAnimator;
 
 
