@@ -70,7 +70,10 @@ namespace UI
 
         public void ClickBtn()
         {
-            EventSystem.current.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
+            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable)
+            {
+                EventSystem.current.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ namespace UI
         private Button _btn;
         [SerializeField] private int value;
         [SerializeField] private bool painelBtn;
+        [SerializeField] private bool buySellBtn;
         [SerializeField] private CanvasGroup cg;
         [SerializeField] private BtnSelector btnSelector;
         private void Start()
@@ -24,6 +25,9 @@ namespace UI
                 cg.gameObject.SetActive(true);
                 Bootstrap.Instance.hudC.OnTriggerCheck(cg, btnSelector);
                 Bootstrap.Instance.hudC.OpenHud();
+            }else if (buySellBtn)
+            {
+                Bootstrap.Instance.buySellSys.BuyOrSell(value);
             }
             else
             {

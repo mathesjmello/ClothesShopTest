@@ -10,6 +10,7 @@ namespace Player
         private Rigidbody2D _rb;
         public float velocity = 3;
         private List<Animator> _animators = new List<Animator>();
+        public int meat=1, eggs=2, money = 10;
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();

@@ -29,7 +29,7 @@ public class Bootstrap : MonoBehaviour
     public HUDController hudC;
     public OutfitController outfitC;
     public InputManager inputM;
-    
+    public BuySellSys buySellSys;
     private void Awake()
     {
         if (_instance == null)
@@ -39,5 +39,6 @@ public class Bootstrap : MonoBehaviour
         hudC = FindObjectOfType<HUDController>();
         outfitC = FindObjectOfType<OutfitController>();
         inputM = FindObjectOfType<InputManager>();
+        buySellSys = FindObjectOfType<BuySellSys>();
     }
 }

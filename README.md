@@ -10,8 +10,8 @@ Core
 [x] animation sys
 [x] UI controller (that was hard)
 [x] change clothes sys
-[] money sys
-[] buy and sell sys
+[x] money sys
+[x] buy and sell sys
 [] collectable items
 
 Extra
