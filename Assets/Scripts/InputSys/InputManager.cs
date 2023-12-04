@@ -1,3 +1,5 @@
+using Player;
+using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -6,7 +8,8 @@ public class InputManager : MonoBehaviour
 {
     private Inputs _inputs;
     public GameState gameState = GameState.GamePlay;
-
+    private PlayerController _player;
+    private HUDController _hud;
     public enum GameState
     {
         GamePlay,
@@ -29,7 +32,8 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        
+        _hud = Bootstrap.Instance.hudC;
+        _player = Bootstrap.Instance.pC;
         _inputs.GamePlay.Move.performed += Move;
         _inputs.GamePlay.Interact.started += Interact;
         _inputs.GamePlay.Cancel.started += Cancel;
@@ -40,7 +44,7 @@ public class InputManager : MonoBehaviour
     {
         if (gameState == GameState.UI)
         {
-            Bootstrap.Instance.hudC.CloseHud();
+            _hud.CloseHud();
         }
     }
 
@@ -48,11 +52,11 @@ public class InputManager : MonoBehaviour
     {
         if (gameState == GameState.GamePlay)
         {
-            Bootstrap.Instance.hudC.OpenHud();
+            _hud.OpenHud();
         }
         else
         {
-            Bootstrap.Instance.hudC.ClickBtn();
+            _hud.ClickBtn();
         }
         
     }
@@ -62,7 +66,7 @@ public class InputManager : MonoBehaviour
         var dir = obj.ReadValue<Vector2>();
         if (gameState == GameState.GamePlay)
         {
-            Bootstrap.Instance.pC.SetDirection(dir);
+            _player.SetDirection(dir);
         }
     }
 

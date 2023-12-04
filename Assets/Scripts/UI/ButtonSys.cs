@@ -12,8 +12,14 @@ namespace UI
         [SerializeField] private bool buySellBtn;
         [SerializeField] private CanvasGroup cg;
         [SerializeField] private BtnSelector btnSelector;
+        private HUDController _hud;
+        private BuySellSys _bs;
+        private OutfitController _outfitC;
         private void Start()
         {
+            _hud = Bootstrap.Instance.hudC;
+            _bs = Bootstrap.Instance.buySellSys;
+            _outfitC = Bootstrap.Instance.outfitC;
             _btn = GetComponent<Button>();
             _btn.onClick.AddListener(DoStuff);
         }
@@ -23,15 +29,15 @@ namespace UI
             if (painelBtn)
             {
                 cg.gameObject.SetActive(true);
-                Bootstrap.Instance.hudC.OnTriggerCheck(cg, btnSelector);
-                Bootstrap.Instance.hudC.OpenHud();
+                _hud.OnTriggerCheck(cg, btnSelector, 0);
+                _hud.OpenHud();
             }else if (buySellBtn)
             {
-                Bootstrap.Instance.buySellSys.BuyOrSell(value);
+                _bs.BuyOrSell(value);
             }
             else
             {
-                Bootstrap.Instance.outfitC.ChangeOutfit(value);
+                _outfitC.ChangeOutfit(value);
             }
             
             

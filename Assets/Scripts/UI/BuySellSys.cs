@@ -1,4 +1,5 @@
 ﻿using System;
+using Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,16 +15,18 @@ namespace UI
         private int _playerMoney;
         private int _playerEggs;
         private int _playerMeat;
+        private PlayerController _player;
 
         private void Start()
         {
+            _player = Bootstrap.Instance.pC;
             CheckPlayerMoney();
             CheckPlayerItems();
         }
 
         private void CheckPlayerMoney()
         {
-            _playerMoney = Bootstrap.Instance.pC.money;
+            _playerMoney = _player.money;
             moneyText.text = "Coins:   "+_playerMoney.ToString();
             outfit1Buy.interactable = outfit1Value <= _playerMoney;
 
@@ -33,8 +36,8 @@ namespace UI
 
         private void CheckPlayerItems()
         {
-            _playerEggs = Bootstrap.Instance.pC.eggs;
-            _playerMeat = Bootstrap.Instance.pC.meat;
+            _playerEggs = _player.eggs;
+            _playerMeat = _player.meat;
             meat.interactable = _playerMeat >= 1;
             egg.interactable = _playerEggs >= 1;
         }
@@ -44,10 +47,10 @@ namespace UI
             switch (value)
             {
                 case 2:
-                    Bootstrap.Instance.pC.eggs--;
+                    _player.eggs--;
                     break;
                 case 5:
-                    Bootstrap.Instance.pC.meat--;
+                    _player.meat--;
                     break;
                 case -10:
                     outfit1.interactable = true;
@@ -57,7 +60,7 @@ namespace UI
                     break;
             }
 
-            Bootstrap.Instance.pC.money += value;
+            _player.money += value;
             
             CheckPlayerMoney();
             CheckPlayerItems();
