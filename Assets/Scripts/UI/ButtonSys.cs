@@ -9,7 +9,8 @@ namespace UI
         private Button _btn;
         [SerializeField] private int value;
         [SerializeField] private bool painelBtn;
-
+        [SerializeField] private CanvasGroup cg;
+        [SerializeField] private BtnSelector btnSelector;
         private void Start()
         {
             _btn = GetComponent<Button>();
@@ -20,7 +21,9 @@ namespace UI
         {
             if (painelBtn)
             {
-                //open select next painel
+                cg.gameObject.SetActive(true);
+                Bootstrap.Instance.hudC.OnTriggerCheck(cg, btnSelector);
+                Bootstrap.Instance.hudC.OpenHud();
             }
             else
             {

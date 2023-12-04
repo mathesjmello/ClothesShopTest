@@ -22,6 +22,7 @@ namespace UI
         public void OnTriggerExit2D(Collider2D other)
         {
             Bootstrap.Instance.hudC.ExitTriggerCheck();
+            helpHUD.SetActive(false);
         }
     }
 }

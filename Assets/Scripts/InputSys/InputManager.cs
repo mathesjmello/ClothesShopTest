@@ -62,12 +62,7 @@ public class InputManager : MonoBehaviour
         var dir = obj.ReadValue<Vector2>();
         if (gameState == GameState.GamePlay)
         {
-            //send info to player controller
             Bootstrap.Instance.pC.SetDirection(dir);
-        }
-        else
-        {
-            //send info to UI controller
         }
     }
 

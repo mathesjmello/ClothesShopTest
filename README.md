@@ -8,8 +8,8 @@ Core
 [x] Input Sys
 [x] Player Controller
 [x] animation sys
-[] UI controller
-[] change clothes sys
+[x] UI controller (that was hard)
+[x] change clothes sys
 [] money sys
 [] buy and sell sys
 [] collectable items
