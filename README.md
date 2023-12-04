@@ -1,5 +1,8 @@
 # ClothesShopTest
 
+Build over build folder
+
+
 Core
 
 [x] create git and unity project
