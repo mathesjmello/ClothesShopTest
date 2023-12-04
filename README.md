@@ -12,7 +12,7 @@ Core
 [x] change clothes sys
 [x] money sys
 [x] buy and sell sys
-[] collectable items
+[x] collectable items
 
 Extra
 
